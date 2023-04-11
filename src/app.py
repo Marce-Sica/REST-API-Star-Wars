@@ -219,9 +219,9 @@ def protected():
        raise APIException('Token está en lista negra', status_code=404)
 
     print("EL usuario es: ", user.name)
-    return jsonify({"message":"Estás en una ruta protegida"}), 200
+    return jsonify({"message":"Estás en una ruta protegida", "name": user.name}), 200
 
-@app.route("/logout", methods=["POST"])
+@app.route("/logout", methods=["GET"])
 @jwt_required()
 def logout():
     jti = get_jwt()["jti"] #Identificador del JWT (es más corto)
